@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -89,19 +90,50 @@ public class ChatController {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+  // private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+  //   chatCompletionRequest.addMessage(msg);
+  //   try {
+  //     ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+  //     Choice result = chatCompletionResult.getChoices().iterator().next();
+  //     chatCompletionRequest.addMessage(result.getChatMessage());
+  //     appendChatMessage(result.getChatMessage());
+  //     TextToSpeech.speak(result.getChatMessage().getContent());
+  //     return result.getChatMessage();
+  //   } catch (ApiProxyException e) {
+  //     e.printStackTrace();
+  //     return null;
+  //   }
+  // }
+
+  // refactor runGpt to use JavaFX Task
+  private void runGpt(ChatMessage msg) {
     chatCompletionRequest.addMessage(msg);
-    try {
-      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      chatCompletionRequest.addMessage(result.getChatMessage());
-      appendChatMessage(result.getChatMessage());
-      TextToSpeech.speak(result.getChatMessage().getContent());
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      e.printStackTrace();
-      return null;
-    }
+
+    Task<ChatMessage> task =
+        new Task<ChatMessage>() {
+          @Override
+          protected ChatMessage call() throws ApiProxyException {
+            try {
+              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+              Choice result = chatCompletionResult.getChoices().iterator().next();
+              chatCompletionRequest.addMessage(result.getChatMessage());
+              TextToSpeech.speak(result.getChatMessage().getContent());
+              return result.getChatMessage();
+            } catch (ApiProxyException e) {
+              e.printStackTrace();
+              return null;
+            }
+          }
+        };
+
+    task.setOnSucceeded(
+        event -> {
+          ChatMessage result = task.getValue();
+          appendChatMessage(result);
+        });
+
+    Thread backgroundThread = new Thread(task);
+    backgroundThread.start();
   }
 
   /**
