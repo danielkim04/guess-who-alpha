@@ -41,8 +41,8 @@ public class RoomController {
   @FXML
   public void initialize() {
     context.setRoomController(this);
+    loadChatView(null);
     if (isFirstTimeInit) {
-      loadChatView(null);
       TextToSpeech.speak(
           "Chat with the three customers, and guess who is the " + context.getProfessionToGuess());
       isFirstTimeInit = false;
