@@ -3,11 +3,15 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -24,9 +28,11 @@ public class RoomController {
   @FXML private Rectangle rectWaitress;
   @FXML private Label lblProfession;
   @FXML private Button btnGuess;
+  @FXML private Pane chatContainer;
 
   private static boolean isFirstTimeInit = true;
   private static GameStateContext context = new GameStateContext();
+  private ChatController chatController;
 
   /**
    * Initializes the room view. If it's the first time initialization, it will provide instructions
@@ -35,9 +41,9 @@ public class RoomController {
   @FXML
   public void initialize() {
     if (isFirstTimeInit) {
+      loadChatView(null);
       TextToSpeech.speak(
-          "Chat with the three customers, and guess who is the "
-              + context.getProfessionToGuess());
+          "Chat with the three customers, and guess who is the " + context.getProfessionToGuess());
       isFirstTimeInit = false;
     }
     lblProfession.setText(context.getProfessionToGuess());
@@ -84,5 +90,20 @@ public class RoomController {
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
     context.handleGuessClick();
+  }
+
+  public void loadChatView(String rectangleID) {
+    try {
+      FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/chat.fxml"));
+      Parent chatView = loader.load();
+      chatController = loader.getController();
+      if (rectangleID != null) {
+        chatController.setProfession(rectangleID);
+      }
+      chatContainer.getChildren().clear();
+      chatContainer.getChildren().add(chatView);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
