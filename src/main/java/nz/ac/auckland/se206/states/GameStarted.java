@@ -2,8 +2,8 @@ package nz.ac.auckland.se206.states;
 
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class GameStarted implements GameState {
 
   private final GameStateContext context;
+  private RoomController roomController;
 
   /**
    * Constructs a new GameStarted state with the given game state context.
@@ -21,6 +22,7 @@ public class GameStarted implements GameState {
    */
   public GameStarted(GameStateContext context) {
     this.context = context;
+    this.roomController = context.getRoomController();
   }
 
   /**
@@ -42,7 +44,7 @@ public class GameStarted implements GameState {
         TextToSpeech.speak("Hi, let me know when you are ready to order!");
         return;
     }
-    App.openChat(event, context.getProfession(rectangleId));
+    roomController.loadChatView(rectangleId);
   }
 
   /**
@@ -55,5 +57,10 @@ public class GameStarted implements GameState {
   public void handleGuessClick() throws IOException {
     TextToSpeech.speak("Make a guess, click on the " + context.getProfessionToGuess());
     context.setState(context.getGuessingState());
+  }
+
+  @Override
+  public void setRoomController(RoomController roomController) {
+    this.roomController = roomController;
   }
 }

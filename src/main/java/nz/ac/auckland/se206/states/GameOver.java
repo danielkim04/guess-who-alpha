@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.states;
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
@@ -12,6 +13,7 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class GameOver implements GameState {
 
   private final GameStateContext context;
+  private RoomController roomController;
 
   /**
    * Constructs a new GameOver state with the given game state context.
@@ -48,5 +50,10 @@ public class GameOver implements GameState {
   @Override
   public void handleGuessClick() throws IOException {
     TextToSpeech.speak("You have already guessed!");
+  }
+
+  @Override
+  public void setRoomController(RoomController roomController) {
+    this.roomController = roomController;
   }
 }

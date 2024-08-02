@@ -40,6 +40,7 @@ public class RoomController {
    */
   @FXML
   public void initialize() {
+    context.setRoomController(this);
     if (isFirstTimeInit) {
       loadChatView(null);
       TextToSpeech.speak(

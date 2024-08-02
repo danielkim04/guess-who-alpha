@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.states;
 
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.controllers.RoomController;
 
 /**
  * Interface representing the state of the game. Defines methods to handle user interactions such as
@@ -24,4 +25,6 @@ public interface GameState {
    * @throws IOException if there is an I/O error
    */
   void handleGuessClick() throws IOException;
+
+  void setRoomController(RoomController roomController);
 }

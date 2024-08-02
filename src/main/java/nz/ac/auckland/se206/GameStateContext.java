@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.states.GameOver;
 import nz.ac.auckland.se206.states.GameStarted;
 import nz.ac.auckland.se206.states.GameState;
@@ -28,6 +29,7 @@ public class GameStateContext {
   private final Guessing guessingState;
   private final GameOver gameOverState;
   private GameState gameState;
+  private RoomController roomController;
 
   /** Constructs a new GameStateContext and initializes the game states and professions. */
   public GameStateContext() {
@@ -152,5 +154,16 @@ public class GameStateContext {
    */
   public void handleGuessClick() throws IOException {
     gameState.handleGuessClick();
+  }
+
+  public void setRoomController(RoomController roomController) {
+    this.roomController = roomController;
+    gameStartedState.setRoomController(roomController);
+    guessingState.setRoomController(roomController);
+    gameOverState.setRoomController(roomController);
+  }
+
+  public RoomController getRoomController() {
+    return roomController;
   }
 }
