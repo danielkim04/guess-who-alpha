@@ -30,10 +30,12 @@ public class GameStateContext {
   private final GameOver gameOverState;
   private GameState gameState;
   private RoomController roomController;
+  private GameTimer gameTimer;
 
   /** Constructs a new GameStateContext and initializes the game states and professions. */
   public GameStateContext() {
-    gameStartedState = new GameStarted(this);
+    this.gameTimer = new GameTimer(2);
+    gameStartedState = new GameStarted(this, this.gameTimer);
     guessingState = new Guessing(this);
     gameOverState = new GameOver(this);
 

@@ -3,6 +3,7 @@ package nz.ac.auckland.se206.states;
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.controllers.RoomController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
@@ -14,15 +15,18 @@ public class GameStarted implements GameState {
 
   private final GameStateContext context;
   private RoomController roomController;
+  private GameTimer gameTimer;
 
   /**
    * Constructs a new GameStarted state with the given game state context.
    *
    * @param context the context of the game state
    */
-  public GameStarted(GameStateContext context) {
+  public GameStarted(GameStateContext context, GameTimer gameTimer) {
     this.context = context;
     this.roomController = context.getRoomController();
+    this.gameTimer = gameTimer;
+    gameTimer.start();
   }
 
   /**
