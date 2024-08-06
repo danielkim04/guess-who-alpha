@@ -22,13 +22,16 @@ public class GameTimer {
   }
 
   private void updateTimer() {
-    if (timeRemaining > 0) {
+    if (timeRemaining > 1) {
+      System.out.println("Time remaining: " + timeRemaining);
       timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
     } else {
+      System.out.println("*****TIME IS OUT*****");
+      timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
-      stop();
       context.setStateToGuessing();
+      stop();
     }
   }
 

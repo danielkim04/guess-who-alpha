@@ -41,7 +41,7 @@ public class GameStateContext {
     // System.out.println("***Room controller: " + roomController);
     this.roomController = roomController;
 
-    this.gameTimer = new GameTimer(2, this, roomController);
+    this.gameTimer = new GameTimer(1, this, roomController);
 
     gameState = gameStartedState; // Initial state
     Map<String, Object> obj = null;
