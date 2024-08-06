@@ -192,4 +192,9 @@ public class GameStateContext {
   public GameState getGameState() {
     return gameState;
   }
+
+  public boolean readyToGuess() {
+    return (gameStartedState.getHasClueBeenInspected()
+        && gameStartedState.getHasSuspectBeenInvestigated());
+  }
 }

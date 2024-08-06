@@ -99,6 +99,10 @@ public class RoomController {
    */
   @FXML
   private void handleGuessClick(ActionEvent event) throws IOException {
+    if (!(context.readyToGuess())) {
+      System.out.println("Not ready to guess yet");
+      return;
+    }
     context.handleGuessClick();
   }
 

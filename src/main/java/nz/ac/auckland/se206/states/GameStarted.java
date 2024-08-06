@@ -15,6 +15,8 @@ public class GameStarted implements GameState {
   private final GameStateContext context;
   private RoomController roomController;
   private String currentRectangleId;
+  private boolean hasClueBeenInspected = false;
+  private boolean hasSuspectBeenInvestigated = false;
 
   /**
    * Constructs a new GameStarted state with the given game state context.
@@ -37,12 +39,15 @@ public class GameStarted implements GameState {
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
     // Transition to chat view or provide an introduction based on the clicked rectangle
+    // clues handled by cases, all others by default
     switch (rectangleId) {
       case "rectCashier":
         TextToSpeech.speak("Welcome to my cafe!");
+        hasClueBeenInspected = true;
         return;
       case "rectWaitress":
         TextToSpeech.speak("Hi, let me know when you are ready to order!");
+        hasClueBeenInspected = true;
         return;
       default:
         if (rectangleId.equals(currentRectangleId)) {
@@ -50,6 +55,11 @@ public class GameStarted implements GameState {
         }
     }
     roomController.loadChatView(rectangleId);
+    if (rectangleId.equals("rectPerson1")
+        || rectangleId.equals("rectPerson2")
+        || rectangleId.equals("rectPerson3")) {
+      hasSuspectBeenInvestigated = true;
+    }
     currentRectangleId = rectangleId;
   }
 
@@ -68,5 +78,13 @@ public class GameStarted implements GameState {
   @Override
   public void setRoomController(RoomController roomController) {
     this.roomController = roomController;
+  }
+
+  public boolean getHasClueBeenInspected() {
+    return hasClueBeenInspected;
+  }
+
+  public boolean getHasSuspectBeenInvestigated() {
+    return hasSuspectBeenInvestigated;
   }
 }
