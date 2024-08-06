@@ -45,10 +45,10 @@ public class RoomController {
   public void initialize() {
     // System.out.println("Roomcontroller initialised");
     // System.out.println("label timer : " + labelTimer);
-    context = new GameStateContext(this);
-    context.setRoomController(this);
     loadChatView(null);
     if (isFirstTimeInit) {
+      context = new GameStateContext(this);
+      context.setRoomController(this);
       TextToSpeech.speak(
           "Chat with the three customers, and guess who is the " + context.getProfessionToGuess());
       isFirstTimeInit = false;

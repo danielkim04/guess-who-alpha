@@ -79,11 +79,11 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // Parent root = loadFxml("room");
+    Parent root = loadFxml("room");
 
-    FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/room.fxml"));
-    Parent root = loader.load();
-    roomController = loader.getController();
+    // FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/room.fxml"));
+    // Parent root = loader.load();
+    // roomController = loader.getController();
 
     scene = new Scene(root);
     stage.setScene(scene);
