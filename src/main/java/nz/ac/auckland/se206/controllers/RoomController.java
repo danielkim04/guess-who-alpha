@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
+import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
@@ -29,10 +30,12 @@ public class RoomController {
   @FXML private Label lblProfession;
   @FXML private Button btnGuess;
   @FXML private Pane chatContainer;
+  @FXML private Label labelTimer;
 
   private static boolean isFirstTimeInit = true;
-  private static GameStateContext context = new GameStateContext();
+  private static GameStateContext context;
   private ChatController chatController;
+  private GameTimer gameTimer;
 
   /**
    * Initializes the room view. If it's the first time initialization, it will provide instructions
@@ -40,12 +43,18 @@ public class RoomController {
    */
   @FXML
   public void initialize() {
+    // System.out.println("Roomcontroller initialised");
+    // System.out.println("label timer : " + labelTimer);
+    context = new GameStateContext(this);
     context.setRoomController(this);
     loadChatView(null);
     if (isFirstTimeInit) {
       TextToSpeech.speak(
           "Chat with the three customers, and guess who is the " + context.getProfessionToGuess());
       isFirstTimeInit = false;
+      this.gameTimer = context.getGameTimer();
+      // System.out.println("GAME TIMER: " + gameTimer);
+      gameTimer.start();
     }
     lblProfession.setText(context.getProfessionToGuess());
   }
@@ -106,5 +115,16 @@ public class RoomController {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public void updateTimer(String time) {
+    if (labelTimer == null) {
+      System.out.println("***************labelTimer is null*****************");
+    }
+    labelTimer.setText(time);
+  }
+
+  public Label getlabelTimer() {
+    return labelTimer;
   }
 }

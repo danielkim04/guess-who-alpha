@@ -33,11 +33,15 @@ public class GameStateContext {
   private GameTimer gameTimer;
 
   /** Constructs a new GameStateContext and initializes the game states and professions. */
-  public GameStateContext() {
-    this.gameTimer = new GameTimer(2);
-    gameStartedState = new GameStarted(this, this.gameTimer);
+  public GameStateContext(RoomController roomController) {
+    gameStartedState = new GameStarted(this);
     guessingState = new Guessing(this);
     gameOverState = new GameOver(this);
+    // this.roomController = new RoomController();
+    // System.out.println("***Room controller: " + roomController);
+    this.roomController = roomController;
+
+    this.gameTimer = new GameTimer(2, this, roomController);
 
     gameState = gameStartedState; // Initial state
     Map<String, Object> obj = null;
@@ -81,6 +85,10 @@ public class GameStateContext {
    */
   public void setState(GameState state) {
     this.gameState = state;
+  }
+
+  public void setStateToGuessing() {
+    this.gameState = guessingState;
   }
 
   /**
@@ -159,7 +167,6 @@ public class GameStateContext {
   }
 
   public void setRoomController(RoomController roomController) {
-    this.roomController = roomController;
     gameStartedState.setRoomController(roomController);
     guessingState.setRoomController(roomController);
     gameOverState.setRoomController(roomController);
@@ -167,5 +174,13 @@ public class GameStateContext {
 
   public RoomController getRoomController() {
     return roomController;
+  }
+
+  public GameTimer getGameTimer() {
+    return gameTimer;
+  }
+
+  public void updateTimerGUI() {
+    roomController.updateTimer(gameTimer.getRemainingTimeFormatted());
   }
 }
