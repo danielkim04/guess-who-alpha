@@ -41,6 +41,7 @@ public class GameStateContext {
     // System.out.println("***Room controller: " + roomController);
     this.roomController = roomController;
 
+    // input arguments: time, context, controller
     this.gameTimer = new GameTimer(1, this, roomController);
 
     gameState = gameStartedState; // Initial state
@@ -89,6 +90,10 @@ public class GameStateContext {
 
   public void setStateToGuessing() {
     this.gameState = guessingState;
+  }
+
+  public void setStateToGameOver() {
+    this.gameState = gameOverState;
   }
 
   /**
@@ -182,5 +187,9 @@ public class GameStateContext {
 
   public void updateTimerGUI() {
     roomController.updateTimer(gameTimer.getRemainingTimeFormatted());
+  }
+
+  public GameState getGameState() {
+    return gameState;
   }
 }

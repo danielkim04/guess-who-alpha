@@ -14,6 +14,7 @@ public class GameStarted implements GameState {
 
   private final GameStateContext context;
   private RoomController roomController;
+  private String currentRectangleId;
 
   /**
    * Constructs a new GameStarted state with the given game state context.
@@ -43,8 +44,13 @@ public class GameStarted implements GameState {
       case "rectWaitress":
         TextToSpeech.speak("Hi, let me know when you are ready to order!");
         return;
+      default:
+        if (rectangleId.equals(currentRectangleId)) {
+          return; // does not reset the chat view if the same rectangle is clicked
+        }
     }
     roomController.loadChatView(rectangleId);
+    currentRectangleId = rectangleId;
   }
 
   /**

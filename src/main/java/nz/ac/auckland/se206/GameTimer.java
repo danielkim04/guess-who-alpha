@@ -16,22 +16,34 @@ public class GameTimer {
     timeInSeconds = minutes * 60;
     timeRemaining = timeInSeconds;
     timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTimer()));
-    timeline.setCycleCount(timeInSeconds);
+    timeline.setCycleCount(timeInSeconds + 10);
     this.context = context;
     this.roomController = roomController;
   }
 
   private void updateTimer() {
     if (timeRemaining > 1) {
-      // System.out.println("Time remaining: " + timeRemaining);
+      System.out.println("Time remaining: " + timeRemaining);
       timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
     } else {
       // System.out.println("*****TIME IS OUT*****");
       timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
-      context.setStateToGuessing();
-      stop();
+      if (context.getGameState() instanceof nz.ac.auckland.se206.states.GameStarted) {
+        context.setStateToGuessing();
+        // initialise 10 second time
+        timeRemaining = 10;
+        System.out.println("**********second timer initialised***************");
+
+        roomController.updateTimer(getRemainingTimeFormatted());
+        // stop();
+      } else if (timeRemaining == 0) {
+        context.setStateToGameOver();
+        stop();
+      } else {
+        roomController.updateTimer(getRemainingTimeFormatted());
+      }
     }
   }
 
