@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.GameTimer;
@@ -135,5 +138,9 @@ public class RoomController {
 
   public void setStatusMessage(String message) {
     labelStatus.setText(message);
+    Timeline timeline =
+        new Timeline(new KeyFrame(Duration.seconds(3), event -> labelStatus.setText("")));
+    timeline.setCycleCount(3);
+    timeline.playFromStart();
   }
 }
