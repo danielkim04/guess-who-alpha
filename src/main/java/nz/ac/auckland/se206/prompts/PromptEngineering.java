@@ -24,9 +24,24 @@ public class PromptEngineering {
    */
   public static String getPrompt(String promptId, Map<String, String> data) {
     try {
+      URL resourceUrl = null; // decalare resourceUrl as null
+
       // Load the prompt template file from resources
-      URL resourceUrl = PromptEngineering.class.getClassLoader().getResource("prompts/chat.txt");
+      switch (promptId) {
+        case "chat.txt":
+          resourceUrl = PromptEngineering.class.getClassLoader().getResource("prompts/chat.txt");
+          break;
+        case "suspect2.txt":
+          resourceUrl =
+              PromptEngineering.class.getClassLoader().getResource("prompts/suspect2.txt");
+          break;
+        case "suspect3.txt":
+          resourceUrl =
+              PromptEngineering.class.getClassLoader().getResource("prompts/suspect3.txt");
+          break;
+      }
       String template = loadTemplate(resourceUrl.toURI());
+
       // Fill the template with the provided data
       return fillTemplate(template, data);
     } catch (IOException | URISyntaxException e) {

@@ -34,7 +34,7 @@ public class GameOver implements GameState {
    */
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
-    if (rectangleId.equals("rectCashier") || rectangleId.equals("rectWaitress")) {
+    if (rectangleId.equals("rectCamera") || rectangleId.equals("rectNote")) {
       return;
     }
     String clickedProfession = context.getProfession(rectangleId);

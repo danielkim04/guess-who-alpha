@@ -39,20 +39,19 @@ public class GameStarted implements GameState {
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
     // Transition to chat view or provide an introduction based on the clicked rectangle
+    if (rectangleId.equals(currentRectangleId)) {
+      return; // does not reset the chat view if the same rectangle is clicked
+    }
     // clues handled by cases, all others by default
     switch (rectangleId) {
-      case "rectCashier":
+      case "rectCamera":
         TextToSpeech.speak("Welcome to my cafe!");
         hasClueBeenInspected = true;
         return;
-      case "rectWaitress":
+      case "rectNote":
         TextToSpeech.speak("Hi, let me know when you are ready to order!");
         hasClueBeenInspected = true;
         return;
-      default:
-        if (rectangleId.equals(currentRectangleId)) {
-          return; // does not reset the chat view if the same rectangle is clicked
-        }
     }
     roomController.loadChatView(rectangleId);
     if (rectangleId.equals("rectPerson1")

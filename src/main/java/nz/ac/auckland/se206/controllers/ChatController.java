@@ -30,7 +30,8 @@ public class ChatController {
   @FXML private Button btnSend;
 
   private ChatCompletionRequest chatCompletionRequest;
-  private String profession;
+
+  // private String profession;
 
   /**
    * Initializes the chat view.
@@ -47,10 +48,22 @@ public class ChatController {
    *
    * @return the system prompt string
    */
-  private String getSystemPrompt() {
+  private String getSystemPrompt(String rectangleID) {
     Map<String, String> map = new HashMap<>();
-    map.put("profession", profession);
-    return PromptEngineering.getPrompt("chat.txt", map);
+    map.put("profession", rectangleID); // originally was profession here
+    switch (rectangleID) {
+      case "rectPerson1":
+        return PromptEngineering.getPrompt("chat.txt", map);
+
+      case "rectPerson2":
+        return PromptEngineering.getPrompt("suspect2.txt", map);
+
+      case "rectPerson3":
+        return PromptEngineering.getPrompt("suspect3.txt", map);
+
+      default:
+        return null;
+    }
   }
 
   /**
@@ -58,8 +71,8 @@ public class ChatController {
    *
    * @param profession the profession to set
    */
-  public void setProfession(String profession) {
-    this.profession = profession;
+  public void setProfession(String rectangleID) {
+    // this.profession = profession;
     try {
       ApiProxyConfig config = ApiProxyConfig.readConfig();
       chatCompletionRequest =
@@ -68,7 +81,7 @@ public class ChatController {
               .setTemperature(0.2)
               .setTopP(0.5)
               .setMaxTokens(100);
-      runGpt(new ChatMessage("system", getSystemPrompt()));
+      runGpt(new ChatMessage("system", getSystemPrompt(rectangleID)));
     } catch (ApiProxyException e) {
       e.printStackTrace();
     }
