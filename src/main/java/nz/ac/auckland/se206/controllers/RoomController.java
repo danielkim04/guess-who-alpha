@@ -31,6 +31,7 @@ public class RoomController {
   @FXML private Button btnGuess;
   @FXML private Pane chatContainer;
   @FXML private Label labelTimer;
+  @FXML private Label labelStatus;
 
   private static boolean isFirstTimeInit = true;
   private static GameStateContext context;
@@ -49,8 +50,7 @@ public class RoomController {
     if (isFirstTimeInit) {
       context = new GameStateContext(this);
       context.setRoomController(this);
-      TextToSpeech.speak(
-          "Chat with the three customers, and guess who is the " + context.getProfessionToGuess());
+      TextToSpeech.speak("Interrogate the three suspects, and guess who is the thief.");
       isFirstTimeInit = false;
       this.gameTimer = context.getGameTimer();
       // System.out.println("GAME TIMER: " + gameTimer);
@@ -101,6 +101,7 @@ public class RoomController {
   private void handleGuessClick(ActionEvent event) throws IOException {
     if (!(context.readyToGuess())) {
       System.out.println("Not ready to guess yet");
+      setStatusMessage("Not ready to guess yet");
       return;
     }
     context.handleGuessClick();
@@ -130,5 +131,9 @@ public class RoomController {
 
   public Label getlabelTimer() {
     return labelTimer;
+  }
+
+  public void setStatusMessage(String message) {
+    labelStatus.setText(message);
   }
 }
