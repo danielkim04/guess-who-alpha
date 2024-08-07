@@ -16,8 +16,11 @@ import nz.ac.auckland.apiproxy.chat.openai.Choice;
 import nz.ac.auckland.apiproxy.config.ApiProxyConfig;
 import nz.ac.auckland.apiproxy.exceptions.ApiProxyException;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.states.GameOver;
+import nz.ac.auckland.se206.states.Guessing;
 
 /**
  * Controller class for the chat view. Handles user interactions and communication with the GPT
@@ -30,6 +33,7 @@ public class ChatController {
   @FXML private Button btnSend;
 
   private ChatCompletionRequest chatCompletionRequest;
+  private GameStateContext context;
 
   // private String profession;
 
@@ -158,6 +162,11 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    // if in guessing or game over state, block send message functionality
+    if (context.getGameState() instanceof Guessing || context.getGameState() instanceof GameOver) {
+      // maybe add status message function call here later
+      return;
+    }
     String message = txtInput.getText().trim();
     if (message.isEmpty()) {
       return;
@@ -178,5 +187,9 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     App.setRoot("room");
+  }
+
+  public void setGameContext(GameStateContext context) {
+    this.context = context;
   }
 }

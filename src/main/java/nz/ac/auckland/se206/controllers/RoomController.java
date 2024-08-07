@@ -120,6 +120,8 @@ public class RoomController {
       }
       chatContainer.getChildren().clear();
       chatContainer.getChildren().add(chatView);
+
+      chatController.setGameContext(context);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -140,7 +142,7 @@ public class RoomController {
     labelStatus.setText(message);
     Timeline timeline =
         new Timeline(new KeyFrame(Duration.seconds(3), event -> labelStatus.setText("")));
-    timeline.setCycleCount(3);
+    timeline.setCycleCount(1);
     timeline.playFromStart();
   }
 }
