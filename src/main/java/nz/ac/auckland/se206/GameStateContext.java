@@ -41,8 +41,8 @@ public class GameStateContext {
     // System.out.println("***Room controller: " + roomController);
     this.roomController = roomController;
 
-    // input arguments: time, context, controller
-    this.gameTimer = new GameTimer(1, this, roomController);
+    // input arguments: time in minutes, context, controller
+    this.gameTimer = new GameTimer(2, this, roomController);
 
     gameState = gameStartedState; // Initial state
     Map<String, Object> obj = null;
