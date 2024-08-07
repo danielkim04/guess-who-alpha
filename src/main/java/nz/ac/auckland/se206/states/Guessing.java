@@ -34,16 +34,21 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
-    if (rectangleId.equals("rectCamera") || rectangleId.equals("rectNote")) {
-      TextToSpeech.speak("You should click on the customers");
+    if (rectangleId.equals("rectCamera")
+        || rectangleId.equals("rectNote")
+        || rectangleId.equals("rectCard")) {
+      TextToSpeech.speak("You should click on the suspects");
+      roomController.setStatusMessage("You should click on the suspects");
       return;
     }
 
-    String clickedProfession = context.getProfession(rectangleId);
-    if (rectangleId.equals(context.getRectIdToGuess())) {
-      TextToSpeech.speak("Correct! You won! This is the " + clickedProfession);
+    // String clickedProfession = context.getProfession(rectangleId);
+    if (rectangleId.equals("rectPerson1")) {
+      TextToSpeech.speak("Correct! You won! This is the thief!");
+      roomController.setStatusMessage("Victory!\nThis is the thief!");
     } else {
-      TextToSpeech.speak("You lost! This is the " + clickedProfession);
+      TextToSpeech.speak("You lost! This is not the thief!");
+      roomController.setStatusMessage("Defeat!\nThis is not the thief!");
     }
     context.setState(context.getGameOverState());
   }

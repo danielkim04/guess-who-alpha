@@ -37,8 +37,9 @@ public class GameOver implements GameState {
     if (rectangleId.equals("rectCamera") || rectangleId.equals("rectNote")) {
       return;
     }
-    String clickedProfession = context.getProfession(rectangleId);
-    TextToSpeech.speak("Game Over, you have already guessed! This is the " + clickedProfession);
+    // String clickedProfession = context.getProfession(rectangleId);
+    TextToSpeech.speak("Game is over!");
+    roomController.setStatusMessage("Game Over!");
   }
 
   /**
@@ -49,7 +50,8 @@ public class GameOver implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("You have already guessed!");
+    TextToSpeech.speak("Game is over!");
+    roomController.setStatusMessage("Game Over!");
   }
 
   @Override

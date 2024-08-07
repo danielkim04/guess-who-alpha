@@ -34,6 +34,7 @@ public class GameTimer {
         context.setStateToGuessing();
         // initialise 10 second timer
         timeRemaining = 10;
+        roomController.setStatusMessage("Time is up!\nYou have 10 seconds to make a guess.");
         // System.out.println("**********second timer initialised***************");
         roomController.updateTimer(getRemainingTimeFormatted());
         // stop();
