@@ -35,11 +35,13 @@ public class RoomController {
   @FXML private Pane chatContainer;
   @FXML private Label labelTimer;
   @FXML private Label labelStatus;
+  @FXML private Pane clueContainer;
 
   private static boolean isFirstTimeInit = true;
   private static GameStateContext context;
   private ChatController chatController;
   private GameTimer gameTimer;
+  private NoteController noteController;
 
   /**
    * Initializes the room view. If it's the first time initialization, it will provide instructions
@@ -127,6 +129,24 @@ public class RoomController {
     }
   }
 
+  public void loadClueView(String fileName) {
+    try {
+      FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fileName + ".fxml"));
+      Parent clueView = loader.load();
+      switch (fileName) {
+        case "note":
+          noteController = loader.getController();
+          break;
+        default:
+          break;
+      }
+      clueContainer.getChildren().clear();
+      clueContainer.getChildren().add(clueView);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   public void updateTimer(String time) {
     if (labelTimer == null) {
       System.out.println("***************labelTimer is null*****************");
@@ -144,5 +164,15 @@ public class RoomController {
         new Timeline(new KeyFrame(Duration.seconds(3), event -> labelStatus.setText("")));
     timeline.setCycleCount(1);
     timeline.playFromStart();
+  }
+
+  public void onNoteClick(MouseEvent event) throws IOException {
+    loadClueView("note");
+    clueContainer.setVisible(true);
+    noteController.setRoomController(this);
+  }
+
+  public Pane getClueContainer() {
+    return clueContainer;
   }
 }

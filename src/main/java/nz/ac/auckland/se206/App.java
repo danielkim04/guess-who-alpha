@@ -94,4 +94,14 @@ public class App extends Application {
   public RoomController getRoomController() {
     return roomController;
   }
+
+  public static void switchToNoteView() throws IOException {
+    Parent root = loadFxml("note");
+    scene.setRoot(root);
+  }
+
+  public static void switchBackToRoomView() throws IOException {
+    Parent root = loadFxml("room");
+    scene.setRoot(root);
+  }
 }
