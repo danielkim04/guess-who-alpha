@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.CameraController">
+   <children>
+      <ImageView fitHeight="285.0" fitWidth="331.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/camera1.jpeg" />
+         </image>
+      </ImageView>
+      <Button fx:id="buttonClose" layoutX="148.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#onCloseClick" text="Close" />
+   </children>
+</Pane>

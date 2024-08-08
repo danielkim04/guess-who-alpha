@@ -8,18 +8,18 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.NoteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.NoteController">
    <children>
-      <ImageView fitHeight="246.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="290.0" fitWidth="281.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/note1.jpeg" />
          </image>
       </ImageView>
-      <TextArea layoutY="213.0" prefHeight="68.0" prefWidth="275.0" text="&quot;Hmmmmmm looks like the thief had &#10;access to the art gallery's security &#10;protocols. Must be an inside job!&quot;">
+      <TextArea layoutX="2.0" layoutY="285.0" prefHeight="73.0" prefWidth="278.0" text="&quot;Hmmmmmm looks like the thief had &#10;access to the art gallery's security &#10;protocols. Must be an inside job!&quot;">
          <font>
             <Font size="13.0" />
          </font>
       </TextArea>
-      <Button fx:id="buttonClose" layoutX="221.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#onCloseClick" text="Close" />
+      <Button fx:id="buttonClose" layoutX="222.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onCloseClick" text="Close" />
    </children>
 </Pane>

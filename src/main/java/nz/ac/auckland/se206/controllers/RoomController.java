@@ -42,6 +42,8 @@ public class RoomController {
   private ChatController chatController;
   private GameTimer gameTimer;
   private NoteController noteController;
+  private CameraController cameraController;
+  private CardController cardController;
 
   /**
    * Initializes the room view. If it's the first time initialization, it will provide instructions
@@ -137,6 +139,11 @@ public class RoomController {
         case "note":
           noteController = loader.getController();
           break;
+        case "camera":
+          cameraController = loader.getController();
+          break;
+        case "card":
+          cardController = loader.getController();
         default:
           break;
       }
@@ -166,13 +173,19 @@ public class RoomController {
     timeline.playFromStart();
   }
 
-  public void onNoteClick(MouseEvent event) throws IOException {
-    loadClueView("note");
-    clueContainer.setVisible(true);
-    noteController.setRoomController(this);
-  }
-
   public Pane getClueContainer() {
     return clueContainer;
+  }
+
+  public NoteController getNoteController() {
+    return noteController;
+  }
+
+  public CameraController getCameraController() {
+    return cameraController;
+  }
+
+  public CardController getCardController() {
+    return cardController;
   }
 }

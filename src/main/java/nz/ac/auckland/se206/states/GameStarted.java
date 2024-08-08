@@ -45,14 +45,25 @@ public class GameStarted implements GameState {
     // clues handled by cases, all others by default
     switch (rectangleId) {
       case "rectCamera":
-        TextToSpeech.speak("Welcome to my cafe!");
+        roomController.loadClueView("camera");
+        roomController.getClueContainer().setVisible(true);
+        roomController.getCameraController().setRoomController(roomController);
         hasClueBeenInspected = true;
         return;
       case "rectNote":
-        TextToSpeech.speak("Hi, let me know when you are ready to order!");
+        roomController.loadClueView("note");
+        roomController.getClueContainer().setVisible(true);
+        roomController.getNoteController().setRoomController(roomController);
+        hasClueBeenInspected = true;
+        return;
+      case "rectCard":
+        roomController.loadClueView("card");
+        roomController.getClueContainer().setVisible(true);
+        roomController.getCardController().setRoomController(roomController);
         hasClueBeenInspected = true;
         return;
     }
+
     roomController.loadChatView(rectangleId);
     if (rectangleId.equals("rectPerson1")
         || rectangleId.equals("rectPerson2")
