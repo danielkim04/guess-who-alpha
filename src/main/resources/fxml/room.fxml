@@ -10,35 +10,35 @@
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="599.0" prefWidth="1215.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomController">
    <children>
-      <Button fx:id="btnGuess" layoutX="362.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
-      <Pane fx:id="clueContainer" layoutX="14.0" layoutY="97.0" prefHeight="478.0" prefWidth="785.0" />
-      <Pane fx:id="roomContainer" layoutX="14.0" layoutY="134.0" prefHeight="449.0" prefWidth="785.0">
+      <Pane fx:id="clueContainer" layoutX="14.0" layoutY="133.0" prefHeight="442.0" prefWidth="785.0" />
+      <Pane fx:id="roomContainer" layoutX="14.0" layoutY="97.0" prefHeight="486.0" prefWidth="785.0">
          <children>
-            <ImageView fx:id="imageScene" fitHeight="457.0" fitWidth="785.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageScene" fitHeight="457.0" fitWidth="785.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/gallery3.jpeg" />
                </image>
             </ImageView>
-            <ImageView fx:id="loadingGif1" fitHeight="46.0" fitWidth="65.0" layoutX="176.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="loadingGif1" fitHeight="46.0" fitWidth="65.0" layoutX="177.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/loading.gif" />
                </image>
             </ImageView>
-            <ImageView fx:id="loadingGif2" fitHeight="46.0" fitWidth="65.0" layoutX="347.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="loadingGif2" fitHeight="46.0" fitWidth="65.0" layoutX="347.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/loading.gif" />
                </image>
             </ImageView>
-            <ImageView fx:id="loadingGif3" fitHeight="46.0" fitWidth="65.0" layoutX="442.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="loadingGif3" fitHeight="46.0" fitWidth="65.0" layoutX="448.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/loading.gif" />
                </image>
             </ImageView>
-            <Rectangle fx:id="rectCamera" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="37.0" layoutX="403.0" layoutY="63.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-            <Rectangle fx:id="rectPerson1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="286.0" layoutX="153.0" layoutY="89.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
-            <Rectangle fx:id="rectNote" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="55.0" layoutX="153.0" layoutY="394.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="165.0" />
-            <Rectangle fx:id="rectPerson2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="303.0" layoutX="326.0" layoutY="81.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
-            <Rectangle fx:id="rectPerson3" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="276.0" layoutX="433.0" layoutY="108.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+            <Rectangle fx:id="rectCamera" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="37.0" layoutX="403.0" layoutY="94.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+            <Rectangle fx:id="rectPerson1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="286.0" layoutX="153.0" layoutY="123.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
+            <Rectangle fx:id="rectNote" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="55.0" layoutX="153.0" layoutY="426.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="165.0" />
+            <Rectangle fx:id="rectPerson2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="303.0" layoutX="326.0" layoutY="123.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
+            <Rectangle fx:id="rectPerson3" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="276.0" layoutX="439.0" layoutY="154.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+            <Button fx:id="btnGuess" layoutX="336.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
          </children>
       </Pane>
       <Label alignment="CENTER" layoutX="298.0" layoutY="11.0" text="PI Masters">

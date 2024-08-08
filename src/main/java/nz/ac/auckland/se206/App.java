@@ -18,7 +18,6 @@ import nz.ac.auckland.se206.controllers.RoomController;
 public class App extends Application {
 
   private static Scene scene;
-  private RoomController roomController;
 
   /**
    * The main method that launches the JavaFX application.
@@ -70,6 +69,8 @@ public class App extends Application {
     stage.setScene(scene);
     stage.show();
   }
+
+  private RoomController roomController;
 
   /**
    * This method is invoked when the application starts. It loads and shows the "room" scene.

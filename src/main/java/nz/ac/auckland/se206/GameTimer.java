@@ -23,11 +23,9 @@ public class GameTimer {
 
   private void updateTimer() {
     if (timeRemaining > 1) {
-      // System.out.println("Time remaining: " + timeRemaining);
       timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
     } else {
-      // System.out.println("*****TIME IS OUT*****");
       timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
       if (context.getGameState() instanceof nz.ac.auckland.se206.states.GameStarted) {
@@ -35,9 +33,7 @@ public class GameTimer {
         // initialise 10 second timer
         timeRemaining = 10;
         roomController.setStatusMessage("Time is up!\nYou have 10 seconds to make a guess.");
-        // System.out.println("**********second timer initialised***************");
         roomController.updateTimer(getRemainingTimeFormatted());
-        // stop();
       } else if (timeRemaining == 0) {
         context.setStateToGameOver();
         roomController.setStatusMessage("Time is up!\nGame over.");

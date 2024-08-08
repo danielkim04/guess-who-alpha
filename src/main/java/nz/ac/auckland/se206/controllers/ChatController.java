@@ -20,6 +20,7 @@ import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.prompts.PromptEngineering;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.states.GameOver;
+import nz.ac.auckland.se206.states.GameStarted;
 import nz.ac.auckland.se206.states.Guessing;
 
 /**
@@ -108,25 +109,10 @@ public class ChatController {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  // private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
-  //   chatCompletionRequest.addMessage(msg);
-  //   try {
-  //     ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-  //     Choice result = chatCompletionResult.getChoices().iterator().next();
-  //     chatCompletionRequest.addMessage(result.getChatMessage());
-  //     appendChatMessage(result.getChatMessage());
-  //     TextToSpeech.speak(result.getChatMessage().getContent());
-  //     return result.getChatMessage();
-  //   } catch (ApiProxyException e) {
-  //     e.printStackTrace();
-  //     return null;
-  //   }
-  // }
-
   // refactor runGpt to use JavaFX Task
   private void runGpt(ChatMessage msg) {
 
-    if (roomController != null) {
+    if (roomController != null && context.getGameState() instanceof GameStarted) {
       switch (roomController.getCurrentRectangleSelected()) {
         case "rectPerson1":
           roomController.showLoadingGif(1);

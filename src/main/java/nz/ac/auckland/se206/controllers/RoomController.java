@@ -19,12 +19,15 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameStateContext;
 import nz.ac.auckland.se206.GameTimer;
 import nz.ac.auckland.se206.speech.TextToSpeech;
+import nz.ac.auckland.se206.states.GameStarted;
 
 /**
  * Controller class for the room view. Handles user interactions within the room where the user can
  * chat with customers and guess their profession.
  */
 public class RoomController {
+  private static boolean isFirstTimeInit = true;
+  private static GameStateContext context;
 
   @FXML private Rectangle rectCamera;
   @FXML private Rectangle rectPerson1;
@@ -43,8 +46,6 @@ public class RoomController {
   @FXML private ImageView imageScene;
   @FXML private Pane roomContainer;
 
-  private static boolean isFirstTimeInit = true;
-  private static GameStateContext context;
   private ChatController chatController;
   private GameTimer gameTimer;
   private NoteController noteController;
@@ -58,8 +59,6 @@ public class RoomController {
    */
   @FXML
   public void initialize() {
-    // System.out.println("Roomcontroller initialised");
-    // System.out.println("label timer : " + labelTimer);
     hideLoadingGif(1);
     hideLoadingGif(2);
     hideLoadingGif(3);
@@ -70,7 +69,6 @@ public class RoomController {
       TextToSpeech.speak("Interrogate the three suspects, and guess who is the thief.");
       isFirstTimeInit = false;
       this.gameTimer = context.getGameTimer();
-      // System.out.println("GAME TIMER: " + gameTimer);
       gameTimer.start();
     }
     lblProfession.setText(context.getProfessionToGuess());
@@ -108,16 +106,18 @@ public class RoomController {
     currentRectangleSelected = clickedRectangle.getId();
 
     // shows thought bubble gif upon clicking a person
-    switch (clickedRectangle.getId()) {
-      case "rectPerson1":
-        showLoadingGif(1);
-        break;
-      case "rectPerson2":
-        showLoadingGif(2);
-        break;
-      case "rectPerson3":
-        showLoadingGif(3);
-        break;
+    if (context.getGameState() instanceof GameStarted) {
+      switch (clickedRectangle.getId()) {
+        case "rectPerson1":
+          showLoadingGif(1);
+          break;
+        case "rectPerson2":
+          showLoadingGif(2);
+          break;
+        case "rectPerson3":
+          showLoadingGif(3);
+          break;
+      }
     }
 
     context.handleRectangleClick(event, clickedRectangle.getId());
@@ -242,10 +242,6 @@ public class RoomController {
   public CameraController getCameraController() {
     return cameraController;
   }
-
-  // public CardController getCardController() {
-  //   return cardController;
-  // }
 
   public String getCurrentRectangleSelected() {
     return currentRectangleSelected;
