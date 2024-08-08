@@ -10,7 +10,8 @@
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="599.0" prefWidth="1215.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomController">
    <children>
-      <Pane fx:id="clueContainer" layoutX="14.0" layoutY="126.0" prefHeight="449.0" prefWidth="785.0" />
+      <Button fx:id="btnGuess" layoutX="362.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
+      <Pane fx:id="clueContainer" layoutX="14.0" layoutY="97.0" prefHeight="478.0" prefWidth="785.0" />
       <Pane fx:id="roomContainer" layoutX="14.0" layoutY="134.0" prefHeight="449.0" prefWidth="785.0">
          <children>
             <ImageView fx:id="imageScene" fitHeight="457.0" fitWidth="785.0" pickOnBounds="true" preserveRatio="true">
@@ -45,7 +46,6 @@
             <Font size="38.0" />
          </font>
       </Label>
-      <Button fx:id="btnGuess" layoutX="340.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
       <Label layoutX="19.0" layoutY="63.0" text="A painting has been stolen from the art gallery. Interrogate the suspects and guess the thief.">
          <font>
             <Font size="18.0" />

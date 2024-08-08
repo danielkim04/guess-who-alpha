@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -14,10 +15,13 @@
             <Image url="@../images/note1.jpeg" />
          </image>
       </ImageView>
-      <TextArea editable="false" layoutX="440.0" layoutY="17.0" prefHeight="342.0" prefWidth="278.0" text="&quot;Hmmmmmm looks like the thief had &#10;access to the art gallery's security &#10;protocols. Must be an inside job!&quot;">
+      <TextArea editable="false" layoutX="446.0" layoutY="14.0" prefHeight="342.0" prefWidth="278.0" text="The thief dropped this at the crime scene. &#10;Looks like they had access to the art gallery's &#10;security protocols. &#10;This must be an insider job!" wrapText="true">
          <font>
-            <Font size="13.0" />
+            <Font size="22.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </TextArea>
       <Button fx:id="buttonClose" layoutX="446.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#onCloseClick" prefHeight="48.0" prefWidth="278.0" text="Close">
          <font>
