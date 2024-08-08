@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -36,6 +37,9 @@ public class RoomController {
   @FXML private Label labelTimer;
   @FXML private Label labelStatus;
   @FXML private Pane clueContainer;
+  @FXML private ImageView loadingGif1;
+  @FXML private ImageView loadingGif2;
+  @FXML private ImageView loadingGif3;
 
   private static boolean isFirstTimeInit = true;
   private static GameStateContext context;
@@ -44,6 +48,7 @@ public class RoomController {
   private NoteController noteController;
   private CameraController cameraController;
   private CardController cardController;
+  private String currentRectangleSelected;
 
   /**
    * Initializes the room view. If it's the first time initialization, it will provide instructions
@@ -53,6 +58,9 @@ public class RoomController {
   public void initialize() {
     // System.out.println("Roomcontroller initialised");
     // System.out.println("label timer : " + labelTimer);
+    hideLoadingGif(1);
+    hideLoadingGif(2);
+    hideLoadingGif(3);
     loadChatView(null);
     if (isFirstTimeInit) {
       context = new GameStateContext(this);
@@ -93,8 +101,23 @@ public class RoomController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void handleRectangleClick(MouseEvent event) throws IOException {
+  public void handleRectangleClick(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
+    currentRectangleSelected = clickedRectangle.getId();
+
+    // shows thought bubble gif upon clicking a person
+    switch (clickedRectangle.getId()) {
+      case "rectPerson1":
+        showLoadingGif(1);
+        break;
+      case "rectPerson2":
+        showLoadingGif(2);
+        break;
+      case "rectPerson3":
+        showLoadingGif(3);
+        break;
+    }
+
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
@@ -105,7 +128,7 @@ public class RoomController {
    * @throws IOException if there is an I/O error
    */
   @FXML
-  private void handleGuessClick(ActionEvent event) throws IOException {
+  public void handleGuessClick(ActionEvent event) throws IOException {
     if (!(context.readyToGuess())) {
       System.out.println("Not ready to guess yet");
       setStatusMessage("Not ready to guess yet");
@@ -126,6 +149,7 @@ public class RoomController {
       chatContainer.getChildren().add(chatView);
 
       chatController.setGameContext(context);
+      chatController.setRoomController(this);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -173,6 +197,38 @@ public class RoomController {
     timeline.playFromStart();
   }
 
+  public void showLoadingGif(int gifNumber) {
+    switch (gifNumber) {
+      case 1:
+        loadingGif1.setVisible(true);
+        break;
+      case 2:
+        loadingGif2.setVisible(true);
+        break;
+      case 3:
+        loadingGif3.setVisible(true);
+        break;
+      default:
+        break;
+    }
+  }
+
+  public void hideLoadingGif(int gifNumber) {
+    switch (gifNumber) {
+      case 1:
+        loadingGif1.setVisible(false);
+        break;
+      case 2:
+        loadingGif2.setVisible(false);
+        break;
+      case 3:
+        loadingGif3.setVisible(false);
+        break;
+      default:
+        break;
+    }
+  }
+
   public Pane getClueContainer() {
     return clueContainer;
   }
@@ -187,5 +243,9 @@ public class RoomController {
 
   public CardController getCardController() {
     return cardController;
+  }
+
+  public String getCurrentRectangleSelected() {
+    return currentRectangleSelected;
   }
 }

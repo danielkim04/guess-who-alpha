@@ -34,6 +34,7 @@ public class ChatController {
 
   private ChatCompletionRequest chatCompletionRequest;
   private GameStateContext context;
+  private RoomController roomController;
 
   // private String profession;
 
@@ -124,6 +125,21 @@ public class ChatController {
 
   // refactor runGpt to use JavaFX Task
   private void runGpt(ChatMessage msg) {
+
+    if (roomController != null) {
+      switch (roomController.getCurrentRectangleSelected()) {
+        case "rectPerson1":
+          roomController.showLoadingGif(1);
+          break;
+        case "rectPerson2":
+          roomController.showLoadingGif(2);
+          break;
+        case "rectPerson3":
+          roomController.showLoadingGif(3);
+          break;
+      }
+    }
+
     chatCompletionRequest.addMessage(msg);
 
     Task<ChatMessage> task =
@@ -147,6 +163,9 @@ public class ChatController {
         event -> {
           ChatMessage result = task.getValue();
           appendChatMessage(result);
+          roomController.hideLoadingGif(1);
+          roomController.hideLoadingGif(2);
+          roomController.hideLoadingGif(3);
         });
 
     Thread backgroundThread = new Thread(task);
@@ -191,5 +210,9 @@ public class ChatController {
 
   public void setGameContext(GameStateContext context) {
     this.context = context;
+  }
+
+  public void setRoomController(RoomController roomController) {
+    this.roomController = roomController;
   }
 }

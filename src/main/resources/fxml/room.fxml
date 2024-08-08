@@ -54,5 +54,20 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
+      <ImageView fx:id="loadingGif1" fitHeight="46.0" fitWidth="65.0" layoutX="177.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loading.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="loadingGif2" fitHeight="46.0" fitWidth="65.0" layoutX="352.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loading.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="loadingGif3" fitHeight="46.0" fitWidth="65.0" layoutX="449.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/loading.gif" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
