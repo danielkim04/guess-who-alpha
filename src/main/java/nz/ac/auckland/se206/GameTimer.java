@@ -40,6 +40,7 @@ public class GameTimer {
         // stop();
       } else if (timeRemaining == 0) {
         context.setStateToGameOver();
+        roomController.setStatusMessage("Time is up!\nGame over.");
         stop();
       } else {
         roomController.updateTimer(getRemainingTimeFormatted());

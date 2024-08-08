@@ -47,21 +47,24 @@ public class GameStarted implements GameState {
       case "rectCamera":
         roomController.loadClueView("camera");
         roomController.getClueContainer().setVisible(true);
+        roomController.getRoomContainer().setVisible(false);
         roomController.getCameraController().setRoomController(roomController);
         hasClueBeenInspected = true;
         return;
       case "rectNote":
         roomController.loadClueView("note");
         roomController.getClueContainer().setVisible(true);
+        roomController.getRoomContainer().setVisible(false);
         roomController.getNoteController().setRoomController(roomController);
         hasClueBeenInspected = true;
         return;
-      case "rectCard":
-        roomController.loadClueView("card");
-        roomController.getClueContainer().setVisible(true);
-        roomController.getCardController().setRoomController(roomController);
-        hasClueBeenInspected = true;
-        return;
+        // case "rectCard":
+        //   roomController.loadClueView("card");
+        //   roomController.getClueContainer().setVisible(true);
+        //   roomController.getRoomContainer().setVisible(false);
+        //   roomController.getCardController().setRoomController(roomController);
+        //   hasClueBeenInspected = true;
+        //   return;
     }
 
     roomController.loadChatView(rectangleId);

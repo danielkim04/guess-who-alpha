@@ -5,6 +5,7 @@ public class CardController {
 
   public void onCloseClick() {
     roomController.getClueContainer().setVisible(false);
+    roomController.getRoomContainer().setVisible(true);
   }
 
   public void setRoomController(RoomController roomController) {

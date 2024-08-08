@@ -10,35 +10,48 @@
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="599.0" prefWidth="1215.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomController">
    <children>
-      <ImageView fitHeight="457.0" fitWidth="785.0" layoutX="6.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/gallery2.jpeg" />
-         </image>
-      </ImageView>
-      <Rectangle fx:id="rectCamera" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="37.0" layoutX="406.0" layoutY="198.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-      <Rectangle fx:id="rectPerson1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="286.0" layoutX="155.0" layoutY="225.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
-      <Rectangle fx:id="rectPerson3" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="276.0" layoutX="438.0" layoutY="246.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
-      <Rectangle fx:id="rectNote" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="55.0" layoutX="162.0" layoutY="536.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="165.0" />
-      <Rectangle fx:id="rectPerson2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="303.0" layoutX="328.0" layoutY="225.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
-      <Rectangle fx:id="rectCard" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="37.0" layoutX="449.0" layoutY="550.0" onMouseClicked="#handleRectangleClick" stroke="TRANSPARENT" strokeType="INSIDE" width="89.0" />
-      <Label layoutX="155.0" layoutY="14.0" text="SOFTENG206 - Guess Who ?">
+      <Pane fx:id="clueContainer" layoutX="14.0" layoutY="126.0" prefHeight="449.0" prefWidth="785.0" />
+      <Pane fx:id="roomContainer" layoutX="14.0" layoutY="134.0" prefHeight="449.0" prefWidth="785.0">
+         <children>
+            <ImageView fx:id="imageScene" fitHeight="457.0" fitWidth="785.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/gallery3.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="loadingGif1" fitHeight="46.0" fitWidth="65.0" layoutX="176.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/loading.gif" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="loadingGif2" fitHeight="46.0" fitWidth="65.0" layoutX="347.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/loading.gif" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="loadingGif3" fitHeight="46.0" fitWidth="65.0" layoutX="442.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/loading.gif" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="rectCamera" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="37.0" layoutX="403.0" layoutY="63.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+            <Rectangle fx:id="rectPerson1" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="286.0" layoutX="153.0" layoutY="89.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
+            <Rectangle fx:id="rectNote" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="55.0" layoutX="153.0" layoutY="394.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="165.0" />
+            <Rectangle fx:id="rectPerson2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="303.0" layoutX="326.0" layoutY="81.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="77.0" />
+            <Rectangle fx:id="rectPerson3" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" focusTraversable="true" height="276.0" layoutX="433.0" layoutY="108.0" onMouseClicked="#handleRectangleClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="65.0" />
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="298.0" layoutY="11.0" text="PI Masters">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
       <Button fx:id="btnGuess" layoutX="340.0" layoutY="101.0" mnemonicParsing="false" onAction="#handleGuessClick" text="Make a Guess" />
-      <Label layoutX="42.0" layoutY="61.0" text="Chat with the three customers, and guess who is the ">
+      <Label layoutX="19.0" layoutY="63.0" text="A painting has been stolen from the art gallery. Interrogate the suspects and guess the thief.">
          <font>
-            <Font size="21.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblProfession" layoutX="503.0" layoutY="56.0" prefHeight="37.0" prefWidth="289.0" wrapText="true">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Pane fx:id="chatContainer" layoutX="797.0" layoutY="215.0" prefHeight="371.0" prefWidth="404.0" />
-      <Pane fx:id="clueContainer" layoutX="514.0" layoutY="137.0" prefHeight="387.0" prefWidth="267.0" />
+      <Pane fx:id="chatContainer" layoutX="811.0" layoutY="217.0" prefHeight="371.0" prefWidth="404.0" />
       <Label layoutX="1046.0" layoutY="14.0" text="Time Remaining:">
          <font>
             <Font size="21.0" />
@@ -54,20 +67,6 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <ImageView fx:id="loadingGif1" fitHeight="46.0" fitWidth="65.0" layoutX="177.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/loading.gif" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="loadingGif2" fitHeight="46.0" fitWidth="65.0" layoutX="352.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/loading.gif" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="loadingGif3" fitHeight="46.0" fitWidth="65.0" layoutX="449.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/loading.gif" />
-         </image>
-      </ImageView>
+      <Label fx:id="lblProfession" layoutX="568.0" layoutY="37.0" prefHeight="17.0" prefWidth="27.0" visible="false" />
    </children>
 </Pane>

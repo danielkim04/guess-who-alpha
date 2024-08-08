@@ -40,6 +40,8 @@ public class RoomController {
   @FXML private ImageView loadingGif1;
   @FXML private ImageView loadingGif2;
   @FXML private ImageView loadingGif3;
+  @FXML private ImageView imageScene;
+  @FXML private Pane roomContainer;
 
   private static boolean isFirstTimeInit = true;
   private static GameStateContext context;
@@ -47,7 +49,7 @@ public class RoomController {
   private GameTimer gameTimer;
   private NoteController noteController;
   private CameraController cameraController;
-  private CardController cardController;
+  // private CardController cardController;
   private String currentRectangleSelected;
 
   /**
@@ -166,8 +168,8 @@ public class RoomController {
         case "camera":
           cameraController = loader.getController();
           break;
-        case "card":
-          cardController = loader.getController();
+        // case "card":
+        //   cardController = loader.getController();
         default:
           break;
       }
@@ -241,11 +243,15 @@ public class RoomController {
     return cameraController;
   }
 
-  public CardController getCardController() {
-    return cardController;
-  }
+  // public CardController getCardController() {
+  //   return cardController;
+  // }
 
   public String getCurrentRectangleSelected() {
     return currentRectangleSelected;
+  }
+
+  public Pane getRoomContainer() {
+    return roomContainer;
   }
 }

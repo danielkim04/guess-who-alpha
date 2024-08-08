@@ -7,6 +7,7 @@ public class NoteController {
 
   public void onCloseClick() throws IOException {
     roomController.getClueContainer().setVisible(false);
+    roomController.getRoomContainer().setVisible(true);
   }
 
   public void setRoomController(RoomController roomController) {

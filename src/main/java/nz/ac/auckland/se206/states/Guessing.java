@@ -34,9 +34,7 @@ public class Guessing implements GameState {
    */
   @Override
   public void handleRectangleClick(MouseEvent event, String rectangleId) throws IOException {
-    if (rectangleId.equals("rectCamera")
-        || rectangleId.equals("rectNote")
-        || rectangleId.equals("rectCard")) {
+    if (rectangleId.equals("rectCamera") || rectangleId.equals("rectNote")) {
       TextToSpeech.speak("You should click on the suspects");
       roomController.setStatusMessage("You should click on the suspects");
       return;
