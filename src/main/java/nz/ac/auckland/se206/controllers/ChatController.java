@@ -136,7 +136,14 @@ public class ChatController {
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
               chatCompletionRequest.addMessage(result.getChatMessage());
-              TextToSpeech.speak(result.getChatMessage().getContent());
+              TextToSpeech.speakGpt(
+                  result.getChatMessage().getContent(),
+                  () -> {
+                    appendChatMessage(result.getChatMessage());
+                    roomController.hideLoadingGif(1);
+                    roomController.hideLoadingGif(2);
+                    roomController.hideLoadingGif(3);
+                  });
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               e.printStackTrace();
@@ -145,14 +152,13 @@ public class ChatController {
           }
         };
 
-    task.setOnSucceeded(
-        event -> {
-          ChatMessage result = task.getValue();
-          appendChatMessage(result);
-          roomController.hideLoadingGif(1);
-          roomController.hideLoadingGif(2);
-          roomController.hideLoadingGif(3);
-        });
+    // task.setOnSucceeded(
+    //     event -> {
+    //       // ChatMessage result = task.getValue();
+    //       roomController.hideLoadingGif(1);
+    //       roomController.hideLoadingGif(2);
+    //       roomController.hideLoadingGif(3);
+    //     });
 
     Thread backgroundThread = new Thread(task);
     backgroundThread.start();

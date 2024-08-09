@@ -65,4 +65,51 @@ public class TextToSpeech {
 
     // System.out.println(text);
   }
+
+  public static void speakGpt(String text, Runnable onStart) {
+    if (text == null || text.isEmpty()) {
+      throw new IllegalArgumentException("Text should not be null or empty");
+    }
+
+    Task<Void> backgroundTask =
+        new Task<>() {
+          @Override
+          protected Void call() {
+            try {
+              ApiProxyConfig config = ApiProxyConfig.readConfig();
+              Provider provider = Provider.GOOGLE;
+              Voice voice = Voice.GOOGLE_EN_US_STANDARD_H;
+
+              TextToSpeechRequest ttsRequest = new TextToSpeechRequest(config);
+              ttsRequest.setText(text).setProvider(provider).setVoice(voice);
+
+              TextToSpeechResult ttsResult = ttsRequest.execute();
+              String audioUrl = ttsResult.getAudioUrl();
+
+              if (onStart != null) {
+                onStart.run();
+              }
+
+              try (InputStream inputStream =
+                  new BufferedInputStream(new URL(audioUrl).openStream())) {
+                Player player = new Player(inputStream);
+                player.play();
+              } catch (JavaLayerException | IOException e) {
+                e.printStackTrace();
+              }
+
+            } catch (ApiProxyException e) {
+              e.printStackTrace();
+            }
+            return null;
+          }
+        };
+
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.setDaemon(true); // Ensure the thread does not prevent JVM shutdown
+
+    backgroundThread.start();
+
+    // System.out.println(text);
+  }
 }
