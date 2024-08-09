@@ -152,14 +152,6 @@ public class ChatController {
           }
         };
 
-    // task.setOnSucceeded(
-    //     event -> {
-    //       // ChatMessage result = task.getValue();
-    //       roomController.hideLoadingGif(1);
-    //       roomController.hideLoadingGif(2);
-    //       roomController.hideLoadingGif(3);
-    //     });
-
     Thread backgroundThread = new Thread(task);
     backgroundThread.start();
   }

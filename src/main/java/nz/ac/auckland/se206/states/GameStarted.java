@@ -58,13 +58,6 @@ public class GameStarted implements GameState {
         roomController.getNoteController().setRoomController(roomController);
         hasClueBeenInspected = true;
         return;
-        // case "rectCard":
-        //   roomController.loadClueView("card");
-        //   roomController.getClueContainer().setVisible(true);
-        //   roomController.getRoomContainer().setVisible(false);
-        //   roomController.getCardController().setRoomController(roomController);
-        //   hasClueBeenInspected = true;
-        //   return;
     }
 
     roomController.loadChatView(rectangleId);

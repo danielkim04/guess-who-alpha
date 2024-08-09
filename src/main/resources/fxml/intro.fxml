@@ -8,25 +8,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.IntroController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="1132.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.IntroController">
    <children>
-      <ImageView fitHeight="452.0" fitWidth="705.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="649.0" fitWidth="1179.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/galleryExterior1.jpeg" />
          </image>
       </ImageView>
-      <TextArea editable="false" layoutX="220.0" layoutY="29.0" opacity="0.83" prefHeight="343.0" prefWidth="252.0" />
-      <Button fx:id="startButton" layoutX="288.0" layoutY="313.0" mnemonicParsing="false" onAction="#onClicked" onMouseClicked="#onClicked" prefHeight="45.0" prefWidth="116.0" text="Start Game">
+      <TextArea editable="false" layoutX="440.0" layoutY="96.0" opacity="0.83" prefHeight="343.0" prefWidth="252.0" />
+      <Button fx:id="startButton" layoutX="510.0" layoutY="377.0" mnemonicParsing="false" onAction="#onClicked" prefHeight="45.0" prefWidth="116.0" text="Start Game">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="226.0" layoutY="36.0" prefHeight="45.0" prefWidth="239.0" text="Art Gallery Heist">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="448.0" layoutY="112.0" prefHeight="45.0" prefWidth="239.0" text="Art Gallery Heist">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
       </Label>
-      <Label layoutX="226.0" layoutY="88.0" prefHeight="211.0" prefWidth="239.0" text="A prized painting has been stolen from an art gallery. As a private investigator, it's your job to question the three suspects—a security technician, an art historian, and an artist—each with their own story. Piece together the clues and identify the thief." textAlignment="CENTER" wrapText="true">
+      <Label layoutX="447.0" layoutY="157.0" prefHeight="211.0" prefWidth="239.0" text="A prized painting has been stolen from an art gallery. As a private investigator, it's your job to question the three suspects—a security technician, an art historian, and an artist—each with their own story. Piece together the clues and identify the thief." textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>

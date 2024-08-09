@@ -168,8 +168,6 @@ public class RoomController {
         case "camera":
           cameraController = loader.getController();
           break;
-        // case "card":
-        //   cardController = loader.getController();
         default:
           break;
       }

@@ -115,8 +115,6 @@ public class TextToSpeech {
     backgroundThread.setDaemon(true); // Ensure the thread does not prevent JVM shutdown
 
     backgroundThread.start();
-
-    // System.out.println(text);
   }
 
   public static void speakMp3(String mp3Location) {
