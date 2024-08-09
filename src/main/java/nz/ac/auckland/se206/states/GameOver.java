@@ -38,7 +38,7 @@ public class GameOver implements GameState {
       return;
     }
     // String clickedProfession = context.getProfession(rectangleId);
-    TextToSpeech.speak("Game is over!");
+    TextToSpeech.speakMp3("src/main/resources/sounds/gameisover.mp3");
     roomController.setStatusMessage("Game Over!", 60);
   }
 
@@ -50,7 +50,7 @@ public class GameOver implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("Game is over!");
+    TextToSpeech.speakMp3("src/main/resources/sounds/gameisover.mp3");
     roomController.setStatusMessage("Game Over!", 60);
   }
 

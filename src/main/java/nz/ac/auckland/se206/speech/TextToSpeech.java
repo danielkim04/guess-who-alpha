@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.speech;
 
 import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -34,14 +35,16 @@ public class TextToSpeech {
           protected Void call() {
             try {
               ApiProxyConfig config = ApiProxyConfig.readConfig();
-              Provider provider = Provider.GOOGLE;
-              Voice voice = Voice.GOOGLE_EN_US_STANDARD_H;
+              Provider provider = Provider.OPENAI;
+              Voice voice = Voice.OPENAI_NOVA;
 
               TextToSpeechRequest ttsRequest = new TextToSpeechRequest(config);
               ttsRequest.setText(text).setProvider(provider).setVoice(voice);
 
               TextToSpeechResult ttsResult = ttsRequest.execute();
               String audioUrl = ttsResult.getAudioUrl();
+
+              System.out.println(audioUrl);
 
               try (InputStream inputStream =
                   new BufferedInputStream(new URL(audioUrl).openStream())) {
@@ -77,14 +80,17 @@ public class TextToSpeech {
           protected Void call() {
             try {
               ApiProxyConfig config = ApiProxyConfig.readConfig();
-              Provider provider = Provider.GOOGLE;
-              Voice voice = Voice.GOOGLE_EN_US_STANDARD_H;
+              Provider provider = Provider.OPENAI;
+              Voice voice = Voice.OPENAI_ONYX;
+
+              System.out.println("CHECKPOINT 1");
 
               TextToSpeechRequest ttsRequest = new TextToSpeechRequest(config);
               ttsRequest.setText(text).setProvider(provider).setVoice(voice);
-
               TextToSpeechResult ttsResult = ttsRequest.execute();
               String audioUrl = ttsResult.getAudioUrl();
+
+              System.out.println("CHECKPOINT 2");
 
               if (onStart != null) {
                 onStart.run();
@@ -111,5 +117,37 @@ public class TextToSpeech {
     backgroundThread.start();
 
     // System.out.println(text);
+  }
+
+  public static void speakMp3(String mp3Location) {
+    if (mp3Location == null || mp3Location.isEmpty()) {
+      throw new IllegalArgumentException("URL should not be null or empty");
+    }
+
+    Task<Void> backgroundTask =
+        new Task<>() {
+          @Override
+          protected Void call() {
+            try {
+              // Create an InputStream from the URL
+              try (InputStream inputStream =
+                  new BufferedInputStream(new FileInputStream(mp3Location))) {
+                Player player = new Player(inputStream);
+                player.play();
+              } catch (JavaLayerException | IOException e) {
+                e.printStackTrace();
+              }
+
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+            return null;
+          }
+        };
+
+    Thread backgroundThread = new Thread(backgroundTask);
+    backgroundThread.setDaemon(true); // Ensure the thread does not prevent JVM shutdown
+
+    backgroundThread.start();
   }
 }

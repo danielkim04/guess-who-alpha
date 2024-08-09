@@ -66,7 +66,7 @@ public class RoomController {
     if (isFirstTimeInit) {
       context = new GameStateContext(this);
       context.setRoomController(this);
-      TextToSpeech.speak("Interrogate the three suspects, and guess who is the thief.");
+      TextToSpeech.speakMp3("src/main/resources/sounds/interrogatesuspects.mp3");
       isFirstTimeInit = false;
       this.gameTimer = context.getGameTimer();
       gameTimer.start();

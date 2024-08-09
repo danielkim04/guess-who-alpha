@@ -10,7 +10,7 @@
 
 <Pane fx:id="room" focusTraversable="true" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" prefHeight="535.0" prefWidth="1132.0" style="-fx-background-color: #BBB0A0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RoomController">
    <children>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="9.0" text="Art Gallery Theft">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="9.0" prefHeight="55.0" prefWidth="282.0" text="Art Gallery Heist">
          <font>
             <Font size="38.0" />
          </font>
@@ -65,7 +65,7 @@
                   <Image url="@../images/window1.png" />
                </image>
             </ImageView>
-            <Label fx:id="labelStatus" alignment="CENTER" layoutX="21.0" layoutY="14.0" prefHeight="138.0" prefWidth="299.0" textFill="RED">
+            <Label fx:id="labelStatus" alignment="CENTER" layoutX="21.0" layoutY="14.0" prefHeight="138.0" prefWidth="299.0" textFill="RED" wrapText="true">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>

@@ -84,7 +84,8 @@ public class GameStarted implements GameState {
    */
   @Override
   public void handleGuessClick() throws IOException {
-    TextToSpeech.speak("Make a guess, click on the thief.");
+    TextToSpeech.speakMp3("src/main/resources/sounds/makeaguess.mp3");
+    roomController.setStatusMessage("Make a guess, click on the thief.", 5);
     context.setState(context.getGuessingState());
   }
 

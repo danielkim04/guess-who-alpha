@@ -37,8 +37,6 @@ public class GameStateContext {
     gameStartedState = new GameStarted(this);
     guessingState = new Guessing(this);
     gameOverState = new GameOver(this);
-    // this.roomController = new RoomController();
-    // System.out.println("***Room controller: " + roomController);
     this.roomController = roomController;
 
     // input arguments: time in minutes, context, controller
