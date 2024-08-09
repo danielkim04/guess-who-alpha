@@ -22,10 +22,11 @@ public class GameTimer {
   }
 
   private void updateTimer() {
-    if (timeRemaining > 1) {
+    if (timeRemaining > 2) {
       timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
     } else {
+      timeRemaining--;
       timeRemaining--;
       roomController.updateTimer(getRemainingTimeFormatted());
       if (context.getGameState() instanceof nz.ac.auckland.se206.states.GameStarted) {

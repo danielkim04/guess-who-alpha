@@ -81,7 +81,7 @@ public class TextToSpeech {
             try {
               ApiProxyConfig config = ApiProxyConfig.readConfig();
               Provider provider = Provider.OPENAI;
-              Voice voice = Voice.OPENAI_ONYX;
+              Voice voice = Voice.OPENAI_NOVA;
 
               System.out.println("CHECKPOINT 1");
 
