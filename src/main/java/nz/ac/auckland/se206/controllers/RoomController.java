@@ -51,7 +51,7 @@ public class RoomController {
   private NoteController noteController;
   private CameraController cameraController;
   // private CardController cardController;
-  private String currentRectangleSelected;
+  private String currentRectangleSelected = null;
 
   /**
    * Initializes the room view. If it's the first time initialization, it will provide instructions
@@ -103,10 +103,10 @@ public class RoomController {
   @FXML
   public void handleRectangleClick(MouseEvent event) throws IOException {
     Rectangle clickedRectangle = (Rectangle) event.getSource();
-    currentRectangleSelected = clickedRectangle.getId();
 
     // shows thought bubble gif upon clicking a person
-    if (context.getGameState() instanceof GameStarted) {
+    if (context.getGameState() instanceof GameStarted
+        && !(clickedRectangle.getId().equals(currentRectangleSelected))) {
       switch (clickedRectangle.getId()) {
         case "rectPerson1":
           showLoadingGif(1);
@@ -119,7 +119,7 @@ public class RoomController {
           break;
       }
     }
-
+    currentRectangleSelected = clickedRectangle.getId();
     context.handleRectangleClick(event, clickedRectangle.getId());
   }
 
