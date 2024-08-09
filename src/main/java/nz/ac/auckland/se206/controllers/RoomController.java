@@ -133,7 +133,7 @@ public class RoomController {
   public void handleGuessClick(ActionEvent event) throws IOException {
     if (!(context.readyToGuess())) {
       System.out.println("Not ready to guess yet");
-      setStatusMessage("Not ready to guess yet");
+      setStatusMessage("Not ready to guess yet", 3);
       return;
     }
     context.handleGuessClick();
@@ -191,10 +191,10 @@ public class RoomController {
     return labelTimer;
   }
 
-  public void setStatusMessage(String message) {
+  public void setStatusMessage(String message, int time) {
     labelStatus.setText(message);
     Timeline timeline =
-        new Timeline(new KeyFrame(Duration.seconds(3), event -> labelStatus.setText("")));
+        new Timeline(new KeyFrame(Duration.seconds(time), event -> labelStatus.setText("")));
     timeline.setCycleCount(1);
     timeline.playFromStart();
   }

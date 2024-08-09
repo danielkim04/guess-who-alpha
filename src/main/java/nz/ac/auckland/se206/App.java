@@ -82,10 +82,6 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     Parent root = loadFxml("room");
 
-    // FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/room.fxml"));
-    // Parent root = loader.load();
-    // roomController = loader.getController();
-
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
@@ -95,14 +91,4 @@ public class App extends Application {
   public RoomController getRoomController() {
     return roomController;
   }
-
-  // public static void switchToNoteView() throws IOException {
-  //   Parent root = loadFxml("note");
-  //   scene.setRoot(root);
-  // }
-
-  // public static void switchBackToRoomView() throws IOException {
-  //   Parent root = loadFxml("room");
-  //   scene.setRoot(root);
-  // }
 }

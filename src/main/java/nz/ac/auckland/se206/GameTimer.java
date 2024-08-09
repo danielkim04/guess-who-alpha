@@ -32,11 +32,11 @@ public class GameTimer {
         context.setStateToGuessing();
         // initialise 10 second timer
         timeRemaining = 10;
-        roomController.setStatusMessage("Time is up!\nYou have 10 seconds to make a guess.");
+        roomController.setStatusMessage("Time is up!\nYou have 10 seconds to make a guess.", 3);
         roomController.updateTimer(getRemainingTimeFormatted());
       } else if (timeRemaining == 0) {
         context.setStateToGameOver();
-        roomController.setStatusMessage("Time is up!\nGame over.");
+        roomController.setStatusMessage("Time is up!\nGame over.", 60);
         stop();
       } else {
         roomController.updateTimer(getRemainingTimeFormatted());
